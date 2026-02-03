@@ -1,0 +1,136 @@
+/* Filename: src/components/Register/Register.css */
+
+/* ====================================
+    Register Container Styles.
+======================================= */
+.register {
+	max-width: 420px;
+	width: 90%;
+	margin-inline: auto;
+	margin-block: clamp(4rem, 8vw, 6rem);
+	padding: clamp(2rem, 4vw, 2.8rem);
+	
+	background: var(--surface-dark);
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--border-dark);
+	box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+	
+	animation: registerFadeIn 260ms var(--ease-standard) both;
+}
+
+/* ====================================
+    Register Form Layout Styles.
+======================================= */
+.register-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.8rem;
+}
+
+/* ====================================
+    Register Header Styles.
+======================================= */
+.register-header {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 0.35rem;
+}
+.register-header h1 { margin: 0; font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em; }
+.register-subtitle { font-size: 0.9rem; color: var(--text-muted-dark); opacity: 0.85; }
+
+/* ====================================
+    Register Form Fields Styles.
+======================================= */
+.register-fields { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.register-fields input {
+	width: 100%;
+	padding: 0.75rem 0.95rem;
+	
+	font-size: 0.9rem;
+	font-family: inherit;
+	color: inherit;
+	
+	background: rgba(255, 255, 255, 0.035);
+	border: 1px solid var(--border-dark);
+	border-radius: var(--radius-sm);
+	
+	transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+.register-fields input::placeholder { opacity: 0.55; }
+.register-fields input:hover { border-color: rgba(75, 123, 253, 0.35); }
+.register-fields input:focus {
+	outline: none;
+	border-color: var(--primary);
+	background: rgba(75, 123, 253, 0.07);
+	box-shadow: 0 0 0 2px rgba(75, 123, 253, 0.18);
+}
+
+/* ====================================
+    Register Error Message Styles.
+======================================= */
+.register-error {
+	font-size: 0.85rem;
+	color: var(--error);
+	text-align: center;
+	margin-top: -0.25rem;
+	opacity: 0.9;
+}
+
+/* ====================================
+    Register Submit Button Styles.
+======================================= */
+.register-button {
+	margin-top: 0.2rem;
+	
+	padding: 0.85rem 1.6rem;
+	border-radius: var(--radius-md);
+	
+	font-size: 0.9rem;
+	font-weight: 600;
+	font-family: inherit;
+	
+	background: var(--primary);
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 5px 14px rgba(75, 123, 253, 0.2);
+	
+	transition: transform 140ms var(--ease-standard), box-shadow 140ms ease, background 140ms ease;
+}
+.register-button:hover {
+	background: var(--accent);
+	transform: translateY(-1px);
+	box-shadow: 0 7px 18px rgba(75, 123, 253, 0.24);
+}
+.register-button:active { transform: translateY(0); }
+.register-button:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05),
+	            0 0 0 4px rgba(75, 123, 253, 0.35);
+}
+
+/* ====================================
+    Register Light Mode Styles.
+======================================= */
+@media (prefers-color-scheme: light) {
+	.register { background: var(--surface-light); border-color: var(--border-light); }
+    .register-fields input { background: var(--bg-light); }
+}
+
+/* ====================================
+    Register Animations Styles.
+======================================= */
+@keyframes registerFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================
+    Register Media Query Styles.
+======================================= */
+@media (max-width: 600px) {
+	.register { padding: 1.75rem 1.5rem; }
+	.register-form { gap: 1.5rem;  }
+}

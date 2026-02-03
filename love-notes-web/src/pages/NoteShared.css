@@ -1,0 +1,41 @@
+/* Filename: src/pages/NoteShared.css */
+
+.note-shared { max-width: 560px; width: 100%; }
+
+.note-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	text-align: center;
+}
+
+.note-icon { font-size: 2.25rem; line-height: 1; }
+.note-intro { font-size: 0.95rem; color: #fff; }
+
+.note-card {
+	width: 100%;
+	padding: 1.75rem;
+	border-radius: 22px;
+	
+	background: #ffffff;
+	box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.note-card.loading {
+	background: linear-gradient(100deg, #fafafa 40%, #f2f2f2 50%, #fafafa 60%)
+	background-size: 200% 100%;
+	
+	animation: shimmer 1.4s ease-in-out infinite;
+}
+.note-loading { font-size: 0.95rem; color: #888; }
+
+/* NoteShared Animations Styles. */
+@keyframes shimmer {
+	from { background-position: 200% 0; }
+	to { background-position: -200% 0; }
+}

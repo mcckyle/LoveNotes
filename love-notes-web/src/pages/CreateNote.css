@@ -1,0 +1,56 @@
+/* Filename: src/pages/CreateNote.css */
+
+.create-note { max-width: 520px; width: 100%; }
+
+.create-note-intro {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.share-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	
+	background: #ffffff;
+	padding: 1.75rem;
+	border-radius: 20px;
+	
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+.share-card h2 { font-size: 1.4rem; font-weight: 600; }
+.share-description { color: #555; }
+.share-link { display: flex; gap: 0.5rem; }
+
+.share-link input {
+	flex: 1;
+	padding: 0.75rem 1rem;
+	
+	border-radius: 14px;
+	border: 1px solid #e5e5e7;
+	background: #fafafa;
+	font-size: 0.9rem;
+}
+
+.share-link button {
+	padding: 0.75rem 1.1rem;
+	
+	border-radius: 999px;
+	border: none;
+	background: #ff5a7a;
+	color: #ffffff;
+	font-size: 0.9rem;
+	font-weight: 500;
+	
+	cursor: pointer;
+	
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.share-link button:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 6px 18px rgba(255, 90, 122, 0.25);
+}
+.error { margin-top: 0.5rem; color: #c0392b; font-size: 0.9rem; }
+.muted { color: #888; font-size: 0.8rem; }

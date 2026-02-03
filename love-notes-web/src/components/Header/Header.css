@@ -1,0 +1,178 @@
+/* Filename: src/components/Header/Header.css */
+
+/* ====================================
+    Header Shell Styles.
+======================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg-dark) 90%, transparent);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* ====================================
+    Header Inner Layout Styles.
+======================================= */
+.header-inner {
+	min-height: 68px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-lg);
+	padding-block: 0.85rem;
+}
+
+/* ====================================
+    Logo Text Styles.
+======================================= */
+.logo {
+	font-size: 1.1rem;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: var(--text-light);
+}
+.logo:hover { color: var(--primary); }
+
+/* ====================================
+    Navigation Styles.
+======================================= */
+.nav { display: flex; gap: var(--space-xl); }
+.nav-item {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted-dark);
+}
+.nav-item:hover { color: var(--text-light); }
+.nav-item.active { color: var(--text-light); }
+.nav-item.action { color: var(--primary}; font-weight: 600; }
+.nav-item.action::after { background: var(--accent); }
+
+/* Header Active Underline Effect Styles. */
+.nav-item::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+	height: 1.5px;
+	background: var(--primary);
+	border-radius: 2px;
+	opacity: 0;
+	transform: scaleX(0.75);
+	
+	transition: var(--transition-base);
+}
+.nav-item.active::after { opacity: 1; transform: scaleX(1); }
+
+/* ====================================
+    Right Side Actions Styles.
+======================================= */
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+}
+
+/* ====================================
+    Auth Links Styles.
+======================================= */
+.auth-links { display: flex; gap: 0.5rem; }
+.auth-link {
+	padding: 0.4rem 0.85rem;
+	font-size: 0.85rem;
+	border-radius: var(--radius-md);
+	border: 1px solid transparent;
+	color: var(--text-muted-dark);
+}
+.auth-link:hover { color: var(--text-light); }
+.auth-link.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.auth-link.primary:hover { background: color-mix(in srgb, var(--primary) 88%, #000); }
+
+/* ====================================
+    Avatar Wrapper Styles.
+======================================= */
+.avatar-wrapper {
+	position: relative;
+	display: inline-flex;
+	cursor: pointer;
+}
+
+/* Avatar Circle Styles. */
+.avatar {
+	width: 36px;
+	height: 36px;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	font-weight: 600;
+	font-size: 0.9rem;
+	background: var(--primary);
+	color: #fff;
+}
+.avatar-wrapper:hover .avatar { background: var(--accent); }
+.avatar-wrapper:focus-visible .avatar { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+/* ====================================
+    Avatar Dropdown Menu Styles.
+======================================= */
+.menu {
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+	min-width: 200px;
+	
+	background: var(--surface-dark);
+	border: 1px solid var(--border-dark);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-md);
+	padding: 4px;
+	
+	opacity: 0;
+	transform: translateY(-8px);
+	transform-origin: top right;
+	pointer-events: none;
+	
+	transition: var(--transition-base);
+}
+.menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* Menu Items Styles. */
+.menu-item {
+	width: 100%;
+	padding: 0.6rem 0.75rem;
+	line-height: 1.4;
+	border-radius: var(--radius-md);
+	font-size: 0.85rem;
+	background: transparent;
+}
+.menu-item:hover { background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.menu-item.danger { color: var(--error); font-weight: 500; }
+
+/* Menu Divider Styles. */
+.menu-divider { height: 1px; margin: 8px 0; background: var(--border-dark); }
+
+/* ====================================
+    Header Light Mode Styles.
+======================================= */
+@media (prefers-color-scheme: light) {
+  .header {
+	  background: color-mix(in srgb, var(--bg-light) 88%, transparent);
+	  border-bottom-color: var(--border-light);
+  }
+  .menu {
+	  background: var(--surface-light);
+	  border-color: var(--border-light);
+  }
+}
+
+/* ====================================
+    Header Media Query Styles.
+======================================= */
+@media (max-width: 768px)
+{
+	.nav { display: none; }
+}

@@ -1,0 +1,54 @@
+/* Filename: src/pages/NotesDashboard.css */
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.note-card {
+	padding: 1.5rem;
+	border-radius: 12px;
+	background: var(--surface-dark);
+	border: 1px solid var(--border-dark);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	
+	transition: box-shadow 0.2s ease;
+}
+.note-card:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18); }
+
+.note-actions {
+	margin-top: 1rem;
+	display: flex;
+	gap: 0.5rem;
+}
+
+.note-actions button {
+	padding: 0.5rem 1rem;
+	border-radius: var(--radius-md);
+	border: none;
+	cursor: pointer;
+	font-weight: 500;
+	background: var(--primary);
+	color: #fff;
+	
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.note-actions button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(75, 123, 253, 0.2); }
+
+/* Dashboard Modal Styles. */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}

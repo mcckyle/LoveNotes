@@ -1,0 +1,142 @@
+/* Filename: src/components/HomePage/HomePage.css */
+
+/* ====================================
+    HomePage Root Layout Styles.
+======================================= */
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 7vw, 4.5rem);
+  padding-block: clamp(4.5rem, 10vw, 7rem);
+}
+
+/* ====================================
+    Hero Section Styles.
+======================================= */
+.home-hero {
+	max-width: 720px;
+	margin-inline: auto;
+	padding-inline: var(--space-lg);
+	text-align: center;
+	
+	display: flex;
+	flex-direction: column;
+	gap: 1.15rem;
+	
+	animation: heroEnter 0.45s var(--ease-standard) forwards;
+}
+
+.home-eyebrow {
+	font-size: 0.65rem;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--primary);
+	opacity: 0.55;
+}
+
+.home-title {
+	font-size: clamp(2.6rem, 6vw, 3.4rem);
+	font-weight: 600;
+	letter-spacing: -0.03em;
+	line-height: 1.06;
+	color: var(--text-light);
+}
+
+.home-subtitle {
+	max-width: 520px;
+	margin-inline: auto;
+	font-size: 0.95rem;
+	line-height: 1.7;
+	color: var(--text-muted-dark);
+}
+.home-actions { margin-top: 1.4rem; }
+
+/* HomePage Button Styles. */
+.home-cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	
+	padding: 0.85rem 2.1rem;
+	border-radius: var(--radius-md);
+	
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #fff;
+	background: var(--primary);
+	box-shadow: 0 4px 12px rgba(75, 123, 253, 0.18);
+	
+	transition: transform 140ms var(--ease-standard),
+	            box-shadow var(--transition-fast),
+				background var(--transition-fast);
+}
+
+.home-cta:hover {
+	background: var(--accent);
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(75, 123, 253, 0.22);
+	color: #fff;
+}
+
+/* ====================================
+    Feature Grid Styles.
+======================================= */
+.home-grid {
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: var(--space-lg);
+	
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(1.5rem, 2.8vw, 2.4rem);
+}
+
+/* ====================================
+    Feature Card Styles.
+======================================= */
+.home-card {
+	padding: clamp(1.7rem, 3vw, 2.2rem);
+	border-radius: var(--radius-lg);
+	
+	background: var(--surface-dark);
+	border: 1px solid var(--border-dark);
+	
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	
+	transition: transform 160ms var(--ease-standard), box-shadow var(--transition-fast);
+}
+.home-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14); }
+.card-title { font-size: 1.05rem; font-weight: 600; color: var(--text-light); }
+.card-text { font-size: 0.92rem; line-height: 1.65; opacity: 0.9; color: var(--text-muted-dark); }
+
+/* ====================================
+    HomePage Animations Styles.
+======================================= */
+@keyframes heroEnter {
+	from { opacity: 0; transform: translateY(6px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================
+    HomePage Light Mode Styles.
+======================================= */
+@media (prefers-color-scheme: light) {
+  .home-card {
+	  background: var(--surface-light);
+	  border-color: var(--border-light);
+  }
+  .home-subtitle, .card-text { color: var(--text-muted-light); }
+}
+
+/* ====================================
+    HomePage Media Query Styles.
+======================================= */
+@media (min-width: 780px)
+{
+	.home-grid { grid-template-columns: repeat(3, 1fr); }
+}
