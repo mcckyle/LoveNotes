@@ -44,7 +44,8 @@ public class SecurityFilterChainConfig
                                          "/api/auth/register",
                                          "/api/auth/refresh",
                                          "/api/auth/validate",
-                                         "/api/auth/logout").permitAll()
+                                         "/api/auth/logout",
+                                         "/api/notes/public/**").permitAll()
                         .requestMatchers("/api/auth/me").authenticated()
                         .anyRequest().authenticated()
                 )

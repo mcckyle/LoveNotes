@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Login.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Login component for LoveNotes.
 //****************************************************************************************
@@ -27,21 +27,26 @@ const Login = () => {
 		}
 		catch
 		{
-			setErrorMessage("That did not work. Please check your details!");
+			setErrorMessage("That didn't work. Please check your details.");
 		}
 	};
 
     return (
-	  <section className="login">
-		<form className="login-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+	  <main className="login">
+		<form
+		  className="login-form"
+		  onSubmit={handleSubmit(onSubmit)}
+		  noValidate
+		  aria-labelledby="login-title"
+		>
 		 <header className="login-header">
-			<h1>Welcome back</h1>
+			<h1 id="login-title">Welcome back</h1>
 			<p className="login-subtitle">
 			  Sign in to continue where you left off.
 			</p>
 		 </header>
 			
-		<div className="login-fields">
+		<fieldset className="login-fields">
 		  <input
 			type="email"
 			placeholder="Email"
@@ -56,7 +61,7 @@ const Login = () => {
 			autoComplete="current-password"
 			{...register("password", { required: true })}
 		  />
-		</div>
+		</fieldset>
 		
 		{errorMessage && (
 			<p className="login-error" role="alert">
@@ -68,7 +73,7 @@ const Login = () => {
 			Sign in
 		</button>
 	  </form>
-	</section>
+	</main>
     );
 };
 

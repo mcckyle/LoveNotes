@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: CreateNote.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form wrapper for LoveNotes.
 //****************************************************************************************
@@ -49,29 +49,33 @@ export default function CreateNote()
 	return (
 	  <main className="page page-centered create-note">
 		{ ! shareUrl ? (
-		  <section className="create-note-intro">
-		    <h1 className="page-title">Write a Love Note</h1>
-			<p className="page-subtitle">
-			  A private message, shared with care.
+		  <section className="create-note-compose">
+		   <header className="create-note-header">
+		    <h1 className="create-note-title">Write a love note</h1>
+			<p className="create-note-subtitle">
+			  A private message, shared when the moment feels right.
 			</p>
+		  </header>
 		    <NoteForm onSubmit={handleCreate} loading={loading}/>
-			{error && <p className="error">{error}</p>}
+			{error && <p className="create-note-error" role="alert">{error}</p>}
 		  </section>
 		) : (
-		  <section className="share-card">
-		    <h2>Your love note is ready 💖</h2>
+		  <section className="share-card" aria-live="polite">
+		   <header className="share-header">
+		    <h2 className="share-title">Your note is ready</h2>
 			<p className="share-description">
 			  Share this link with someone special.
 			</p>
+		   </header>
 			
 			<div className="share-link">
-		      <input readOnly value={shareUrl} />
-			  <button onClick={copyLink}>
-			    {copied ? "Copied!" : "Copy Link"}
+		      <input readOnly value={shareUrl} aria-label="Shareable link" />
+			  <button onClick={copyLink} className="share-button">
+			    {copied ? "Copied" : "Copy"}
 			  </button>
 			</div>
 			
-			<p className="muted">
+			<p className="share-muted">
 			  Anyone with this link can read your note.
 			</p>
 		  </section>

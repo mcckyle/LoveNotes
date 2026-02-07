@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: HomePage.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the HomePage component for LoveNotes.
 //****************************************************************************************
@@ -18,7 +18,7 @@ const HomePage = () => {
 		    <h1 className="home-title">
 			  Write what you feel.
 			  <br />
-			  Share it with intention.
+			  <span>Share it with intention.</span>
 			</h1>
 			
 			<p className="home-subtitle">
@@ -38,14 +38,14 @@ const HomePage = () => {
 		  <article className="home-card">
 		    <h2 className="card-title">Intentional by design</h2>
 			<p className="card-text">
-			  No feeds. No noise. Just one message, written with purpose.
+			  No feeds. No noise. Just one message, written with care.
 			</p>
 		  </article>
 		  
 		  <article className="home-card">
 		    <h2 className="card-title">Write in the moment</h2>
 			<p className="card-text">
-			  Capture a feeling as it happens-without friction or distraction.
+			  Capture a feeling as it happens, without friction or distraction.
 			</p>
 		  </article>
 		  

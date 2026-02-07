@@ -6,35 +6,45 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1.25rem;
+	gap: 1.5rem;
 	text-align: center;
 }
 
-.note-icon { font-size: 2.25rem; line-height: 1; }
-.note-intro { font-size: 0.95rem; color: #fff; }
+.note-icon { font-size: 2.75rem; line-height: 1; }
+.note-intro { font-size: 0.95rem; color: var(--text-muted); opacity: 0.9; }
 
 .note-card {
 	width: 100%;
-	padding: 1.75rem;
-	border-radius: 22px;
+	padding: 2rem 2.25rem;
+	border-radius: var(--radius-lg);
 	
-	background: #ffffff;
-	box-shadow: 0 14px 36px rgba(0, 0, 0, 0.06);
+	background: var(--surface-dark);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
 	
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
+	gap: 1rem;
 }
-
-.note-card.loading {
-	background: linear-gradient(100deg, #fafafa 40%, #f2f2f2 50%, #fafafa 60%)
+.note-card.content { opacity: 0; animation: fadeIn 0.45s ease forwards; }
+.note-title { font-size: 1.35rem; font-weight: 600; margin: 0; }
+.note-message { font-size: 1rem; line-height: 1.65; color: var(--text-muted); white-space: pre-wrap; }
+.note-recipient { margin-top: 0.5rem; font-size: 0.95rem; font-weight: 500; color: var(--primary); }
+.note-loading-card {
+	background: linear-gradient(100deg, var(--bg-dark) 40%, rgba(255, 255, 255, 0.05) 50%, var(--bg-dark) 60%);
 	background-size: 200% 100%;
 	
-	animation: shimmer 1.4s ease-in-out infinite;
+	animation: shimmer 1.6s ease-in-out infinite;
 }
-.note-loading { font-size: 0.95rem; color: #888; }
+.note-loading { font-size: 0.95rem; color: var(--text-muted); }
+.note-error { font-size: 0.95rem; color: var(--error); margin-top: 0.25rem; }
 
-/* NoteShared Animations Styles. */
+/* ====================================
+    NoteShared Animations Styles.
+======================================= */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
 @keyframes shimmer {
 	from { background-position: 200% 0; }
 	to { background-position: -200% 0; }

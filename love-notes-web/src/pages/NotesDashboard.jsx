@@ -1,19 +1,21 @@
 //****************************************************************************************
 // Filename: NotesDashboard.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the frontend dashboard for LoveNotes.
 //****************************************************************************************
 
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { getUserNotes, deleteNote } from "../services/NoteService";
+import { getUserNotes, updateNote, deleteNote } from "../services/NoteService";
 import NoteForm from "../components/NoteForm/NoteForm";
+
 import "./NotesDashboard.css";
 
 export default function NotesDashboard()
 {
 	const { accessToken } = useContext(AuthContext);
+	
 	const [notes, setNotes] = useState([]);
 	const [editingNote, setEditingNote] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -28,7 +30,6 @@ export default function NotesDashboard()
 		}
 		catch (error)
 		{
-			console.error(error);
 			setError("We couldn't load your notes right now.");
 		}
 		finally
@@ -54,24 +55,23 @@ export default function NotesDashboard()
 		}
 		catch (error)
 		{
-			console.error(error);
 			setError("Failed to delete note!");
 		}
 	};
-	
-	const handleEdit = (note) => setEditingNote(note);
 	
 	return (
 	  <main className="page page-centered notes-dashboard">
 	   <header className="dashboard-header">
 	    <h1>My Love Notes</h1>
 		<p className="page-subtitle">
-		  Private messages you've shared with care.
+		  Private messages you've written with care.
 		</p>
 	   </header>
-		{error && <p className="error">{error}</p>}
+	   
+	    {error && <p className="dashboard-error">{error}</p>}
+		
 		{loading ? (
-		  <p className="dashboard-loading">Loading your notes...</p>
+		  <p className="dashboard-loading">Loading your notes…</p>
 		) : notes.length === 0 ? (
 		  <p className="dashboard-empty">
 		    You haven't written any notes yet.
@@ -80,23 +80,24 @@ export default function NotesDashboard()
 		  <section className="notes-grid">
 			{notes.map((note) => (
 			  <article key={note.id} className="note-card">
-			<header className="note-card-header">
-			  <h3>{note.title || "Untitled note"}</h3>
-			</header>
+			    <header className="note-card-header">
+			      <h3>{note.title || "Untitled note"}</h3>
+			    </header>
 			<p className="note-preview">{note.message}</p>
 			<footer className="note-actions">
-			  <button className="secondary" onClick={() => handleEdit(note)}>Edit</button>
-			  <button className="secondary" onClick={() => handleDelete(note.id)}>Delete</button>
+			  <button className="note-action secondary" onClick={() => setEditingNote(note)}>Edit</button>
+			  
 			  <button
-			    className="secondary"
+			    className="note-action secondary"
 			    onClick={() =>
 				  navigator.clipboard.writeText(
-				    window.location.origin + "/note/public" + note.publicToken
+				    `${window.location.origin}/note/${note.publicToken}`
 				  )
 				}
 			  >
 			    Copy Link
 			  </button>
+			  <button className="note-action danger" onClick={() => handleDelete(note.id)}>Delete</button>
 			</footer>
 		  </article>
 		  ))}
@@ -104,29 +105,19 @@ export default function NotesDashboard()
 	  )}
 	  
 	  {editingNote && (
-	    <div className="modal">
+	    <div className="modal-backdrop" role="dialog" aria-modal="true">
 		 <div className="modal-card">
 		  <NoteForm
 		    note={editingNote}
 			onSubmit={async (dto) => {
 				try
 				{
-					const updated = await fetch(`/api/notes/${editingNote.id}`, {
-						method: "PUT",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${accessToken}`,
-						},
-						body: JSON.stringify(dto),
-					}).then((r) => r.json());
-					setNotes(
-					  notes.map((n) => (n.id === updated.id ? updated : n))
-					);
+					const updated = await updateNote(editingNote.id, dto, accessToken);
+					setNotes((n) => n.map((note) => (note.id === updated.id ? updated : note)));
 					setEditingNote(null);
 				}
-				catch (error)
+				catch
 				{
-					console.error(error);
 					setError("Failed to update the note!");
 				}
 			}}

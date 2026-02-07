@@ -1,69 +1,103 @@
 /* Filename: src/components/NoteForm/NoteForm.css */
 
+/* ====================================
+   NoteForm Container Styles.
+======================================= */
 .note-form {
 	display: flex;
 	flex-direction: column;
-	gap: 1.25rem;
+	gap: 1.6rem;
 	
-	background: #ffffff;
-	padding: 1.5rem;
-	border-radius: 18px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+	padding: clamp(1.75rem, 3vw, 2.25rem);
+	background: var(--surface-dark);
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--border-dark);
+	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* ====================================
+   NoteForm Header Styles.
+======================================= */
+.note-form-header {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+.note-form-title { margin: 0; font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+.note-form-subtitle { font-size: 0.9rem; color: var(--text-muted); line-height: 1.45; }
+
+/* ====================================
+   NoteForm Fields Styles.
+======================================= */
 .note-field { display: flex; flex-direction: column; }
 .note-form input,
 .note-form textarea {
 	width: 100%;
-	padding: 0.85rem 1rem;
+	padding: 0.85rem 0.95rem;
 	
-	border-radius: 14px;
-	border: 1px solid #e5e537;
-	background: #fafafa;
+	font-family: inherit;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: inherit;
 	
-	font-size: 1rem;
-	line-height: 1.4;
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid var(--border-dark);
+	border-radius: var(--radius-sm);
 	
-	transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+	transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
-
-.note-form textarea {
-	min-height: 160px;
-	resize: vertical;
-}
-.note-form-primary textarea { background: #ffffff; }
+.note-form input::placeholder, .note-form textarea::placeholder { opacity: 0.55; }
+.note-field-primary textarea { min-height: 200px; resize: vertical; }
 
 .note-form input:focus,
 .note-form textarea:focus {
 	outline: none;
-	border-color: #ff5a7a;
-	background: #ffffff;
-	box-shadow: 0 0 0 3px rgba(255, 90, 122, 0.12);
+	border-color: var(--primary);
+	background: rgba(75, 123, 253, 0.06);
+	box-shadow: 0 0 0 2px rgba(75, 123, 253, 0.16);
 }
-.form-actions { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
-.note-form button {
+.form-actions { display: flex; gap: 0.75rem; margin-top: 0.4rem; }
+.note-button {
 	flex: 1;
-	padding: 0.8rem 1.1rem;
+	padding: 0.85rem 1.2rem;
 	
-	border-radius: 999px;
+	border-radius: var(--radius-md);
 	border: none;
 	
-	font-size: 0.95rem;
-	font-weight: 500;
+	font-family: inherit;
+	font-size: 0.9rem;
+	font-weight: 600;
 	cursor: pointer;
 	
-	transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+	transition: transform 120ms ease,
+                box-shadow 120ms ease,
+				background 120ms ease,
+				opacity 120ms ease;
 }
-.note-form button.primary {
-	background: #ff5a7a;
-	color: #ffffff;
-	box-shadow: 0 6px 18px rgba(255, 90, 122, 0.25);
+.note-button.primary {
+	background: var(--primary);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(75, 123, 253, 0.22);
 }
-.note-form button.secondary { background: transparent; color: #fff; }
-.note-form button:hover:not(:disabled) { transform: translateY(-1px); }
-.note-form button:disabled {
+.note-button.primary:hover:not(:disabled) {
+	background: var(--accent);
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(75, 123, 253, 0.26);
+}
+.note-button.secondary { background: transparent; color: var(--text-muted); }
+.note-button.secondary:hover { color: var(--text); }
+.note-button:disabled {
 	opacity: 0.6;
 	cursor: default;
 	transform: none;
 	box-shadow: none;
+}
+
+/* ====================================
+    NoteForm Light Mode Styles.
+======================================= */
+@media (prefers-color-scheme: light) {
+  .note-form { background: var(--surface-light); border-color: var(--border-light); }
+  .note-form input, .note-form textarea { background: var(--bg-light); }
 }

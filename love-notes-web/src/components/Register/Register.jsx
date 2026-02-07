@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Register.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Register component for LoveNotes.
 //****************************************************************************************
@@ -22,7 +22,7 @@ const Register = () => {
 		setErrorMessage("");
 		
 		//Password Match Check.
-		if (data.password !== data.confirmPassword)
+		if ( (data.password) !== (data.confirmPassword) )
 		{
 			setErrorMessage("Passwords do not match!");
 			return;
@@ -47,16 +47,21 @@ const Register = () => {
     };
 
     return (
-	 <section className="register">
-        <form className="register-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+	 <main className="register">
+        <form
+		  className="register-form"
+		  onSubmit={handleSubmit(onSubmit)}
+		  noValidate
+		  aria-labelledby="register-title"
+		>
 		  <header className="register-header">
-            <h1>Begin with intention</h1>
+            <h1 id="register-title">Begin with intention</h1>
 			<p className="register-subtitle">
-                Create an account to start sharing meaningful words.
+                Create an account to share meaningful words.
             </p>
 		  </header>
 			
-		  <div className="register-fields">
+		  <fieldset className="register-fields">
 			<input
 			  type="text"
 			  placeholder="Username"
@@ -81,19 +86,19 @@ const Register = () => {
 			  aria-label="Confirm password"
 			  {...register("confirmPassword", { required: true })}
 			/>
-		  </div>
+		  </fieldset>
 				  
 		  {errorMessage && (
-			<div className="register-error" role="alert">
+			<p className="register-error" role="alert">
 			  {errorMessage}
-			</div>
+			</p>
 		  )}
 		  
 		  <button type="submit" className="register-button">
 			Create account
 		  </button>
          </form>
-	  </section>
+	  </main>
     );
 };
 

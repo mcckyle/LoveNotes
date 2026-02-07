@@ -5,17 +5,17 @@
 ======================================= */
 .register {
 	max-width: 420px;
-	width: 90%;
+	width: 92%;
 	margin-inline: auto;
 	margin-block: clamp(4rem, 8vw, 6rem);
-	padding: clamp(2rem, 4vw, 2.8rem);
+	padding: clamp(2rem, 4vw, 2.5rem);
 	
 	background: var(--surface-dark);
-	border-radius: var(--radius-lg);
+	border-radius: 22px;
 	border: 1px solid var(--border-dark);
-	box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
 	
-	animation: registerFadeIn 260ms var(--ease-standard) both;
+	animation: registerFadeIn 220ms var(--ease-standard) both;
 }
 
 /* ====================================
@@ -24,7 +24,7 @@
 .register-form {
 	display: flex;
 	flex-direction: column;
-	gap: 1.8rem;
+	gap: 1.75rem;
 }
 
 /* ====================================
@@ -37,29 +37,28 @@
 	gap: 0.35rem;
 }
 .register-header h1 { margin: 0; font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em; }
-.register-subtitle { font-size: 0.9rem; color: var(--text-muted-dark); opacity: 0.85; }
+.register-subtitle { font-size: 0.9rem; color: var(--text-muted); line-height: 1.45; }
 
 /* ====================================
     Register Form Fields Styles.
 ======================================= */
-.register-fields { display: flex; flex-direction: column; gap: 0.9rem; }
+.register-fields { display: flex; flex-direction: column; gap: 0.85rem; }
 
 .register-fields input {
 	width: 100%;
-	padding: 0.75rem 0.95rem;
+	padding: 0.8rem 0.95rem;
 	
-	font-size: 0.9rem;
 	font-family: inherit;
+	font-size: 0.9rem;
 	color: inherit;
 	
-	background: rgba(255, 255, 255, 0.035);
+	background: rgba(255, 255, 255, 0.04);
 	border: 1px solid var(--border-dark);
 	border-radius: var(--radius-sm);
 	
-	transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+	transition: background 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
 .register-fields input::placeholder { opacity: 0.55; }
-.register-fields input:hover { border-color: rgba(75, 123, 253, 0.35); }
 .register-fields input:focus {
 	outline: none;
 	border-color: var(--primary);
@@ -74,35 +73,34 @@
 	font-size: 0.85rem;
 	color: var(--error);
 	text-align: center;
-	margin-top: -0.25rem;
-	opacity: 0.9;
+	line-height: 1.4;
 }
 
 /* ====================================
     Register Submit Button Styles.
 ======================================= */
 .register-button {
-	margin-top: 0.2rem;
-	
+	margin-top: 0.4rem;
 	padding: 0.85rem 1.6rem;
-	border-radius: var(--radius-md);
 	
+	border-radius: var(--radius-md);
+	border: none;
+	
+	font-family: inherit;
 	font-size: 0.9rem;
 	font-weight: 600;
-	font-family: inherit;
 	
 	background: var(--primary);
 	color: #fff;
-	border: none;
 	cursor: pointer;
-	box-shadow: 0 5px 14px rgba(75, 123, 253, 0.2);
+	box-shadow: 0 4px 12px rgba(75, 123, 253, 0.22);
 	
-	transition: transform 140ms var(--ease-standard), box-shadow 140ms ease, background 140ms ease;
+	transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
 }
 .register-button:hover {
 	background: var(--accent);
 	transform: translateY(-1px);
-	box-shadow: 0 7px 18px rgba(75, 123, 253, 0.24);
+	box-shadow: 0 6px 16px rgba(75, 123, 253, 0.28);
 }
 .register-button:active { transform: translateY(0); }
 .register-button:focus-visible {
@@ -131,6 +129,6 @@
     Register Media Query Styles.
 ======================================= */
 @media (max-width: 600px) {
-	.register { padding: 1.75rem 1.5rem; }
+	.register { padding: 1.7rem 1.4rem; }
 	.register-form { gap: 1.5rem;  }
 }

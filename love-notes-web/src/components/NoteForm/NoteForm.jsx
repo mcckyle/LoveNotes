@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteForm.jsx
-// Date: 2 February 2026
+// Date: 5 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form for creating notes for LoveNotes.
 //****************************************************************************************
@@ -22,14 +22,21 @@ export default function NoteForm({ onSubmit, loading, note, onCancel })
 			onSubmit({ title, message, recipientName });
 		}}
 	  >
-	   <div className="note-field">
-	    <input
-		  type="text"
-		  placeholder="Title (optional)"
-		  value={title}
-		  onChange={(e) => setTitle(e.target.value)}
-		/>
-	   </div>
+	   <header className="note-form-header">
+	     <h2 className="note-form-title">Write with intention</h2>
+		 <p className="note-form-subtitle">
+		   A single message, shared when it feels right.
+		 </p>
+		</header>
+		
+		<div className="note-field">
+	      <input
+		    type="text"
+		    placeholder="Title (optional)"
+		    value={title}
+		    onChange={(e) => setTitle(e.target.value)}
+		  />
+	    </div>
 	   
 	   <div className="note-field note-field-primary">
 		<textarea
@@ -48,12 +55,13 @@ export default function NoteForm({ onSubmit, loading, note, onCancel })
 		  onChange={(e) => setRecipientName(e.target.value)}
 		/>
 	   </div>
-		<div className="form-actions">
-			<button type="submit" className="primary" disabled={loading}>
-			  {loading ? "Sending..." : "Send Love"}
+	   
+	   <div className="note-actions">
+			<button type="submit" className="note-button primary" disabled={loading}>
+			  {loading ? "Sending…" : "Send Love"}
 			</button>
 			{onCancel && (
-			  <button type="button" className="secondary" onClick={onCancel}>
+			  <button type="button" className="note-button secondary" onClick={onCancel}>
 			    Cancel
 			  </button>
 			)}

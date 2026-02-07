@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Header.jsx
-// Date: 2 February 2026
+// Date: 4 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Header component for LoveNotes.
 //****************************************************************************************
@@ -30,18 +30,19 @@ const Header = () => {
 		  return;
 	  }
 	  
-	  function handleClickOutside(e){
+	  const handleClickOutside = (e) => {
 		  if ( (avatarRef.current) && ( ! avatarRef.current.contains(e.target)) )
 		  {
 			  setMenuOpen(false);
 		  }
-	  }
+	  };
 	  
 	  document.addEventListener("mousedown", handleClickOutside);
 	  return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
   
   const isActive = (path) => location.pathname === path;
+  const navItem = (path) => `nav-item ${isActive(path) ? "active" : ""}`;
   
   return (
 	  <header className="header">
@@ -53,25 +54,25 @@ const Header = () => {
 		  </Link>
 		
 		  {/* Primary Navigation. */}
-		  <nav className="nav" aria-label="Primary">
+		  <nav className="nav" aria-label="Primary Navigation">
 		    <Link
 			  to="/"
+			  className={navItem("/")}
 			  aria-current={isActive("/") ? "page" : undefined}
-			  className={`nav-item ${isActive("/") ? "active" : ""}`}
 			>
 			  Home
 			</Link>
 			<Link
 			  to="/dashboard"
-			  aria-current={isActive("/") ? "page" : undefined}
-			  className={`nav-item ${isActive("/dashboard") ? "active" : ""}`}
+			  className={navItem("/dashboard")}
+			  aria-current={isActive("/dashboard") ? "page" : undefined}
 			>
 			  Dashboard
 			</Link>
 		    <Link
 			  to="/note"
+			  className={navItem("/note")}
 			  aria-current={isActive("/note") ? "page" : undefined}
-			  className={`nav-item action ${isActive("/note") ? "active" : ""}`}
 			>
 			  Write
 			</Link>
@@ -89,7 +90,7 @@ const Header = () => {
 			  aria-expanded={menuOpen}
 		      onClick={() => setMenuOpen((prev) => ! prev)}
 			  onKeyDown={(e) => {
-				  if ( (e.key === "Enter") || (e.key === " "))
+				  if (["Enter", " "].includes(e.key))
 				  {
 					  e.preventDefault();
 					  setMenuOpen((prev) => ! prev);
@@ -97,7 +98,7 @@ const Header = () => {
 				  if (e.key === "Escape") setMenuOpen(false);
 			  }}
 			>
-			  <div className="avatar" aria-hidden>
+			  <div className="avatar">
 			    {user.username?.charAt(0).toUpperCase() || "?"}
 			  </div>
 			  
