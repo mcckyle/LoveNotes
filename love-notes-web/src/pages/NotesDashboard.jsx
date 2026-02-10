@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NotesDashboard.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the frontend dashboard for LoveNotes.
 //****************************************************************************************
@@ -28,7 +28,7 @@ export default function NotesDashboard()
 			const data = await getUserNotes(accessToken);
 			setNotes(data);
 		}
-		catch (error)
+		catch
 		{
 			setError("We couldn't load your notes right now.");
 		}
@@ -53,9 +53,9 @@ export default function NotesDashboard()
 			await deleteNote(id, accessToken);
 			setNotes((n) => n.filter((note) => note.id !== id));
 		}
-		catch (error)
+		catch
 		{
-			setError("Failed to delete note!");
+			setError("Failed to delete the note!");
 		}
 	};
 	
@@ -63,41 +63,61 @@ export default function NotesDashboard()
 	  <main className="page page-centered notes-dashboard">
 	   <header className="dashboard-header">
 	    <h1>My Love Notes</h1>
-		<p className="page-subtitle">
+		<p className="dashboard-subtitle">
 		  Private messages you've written with care.
 		</p>
 	   </header>
 	   
-	    {error && <p className="dashboard-error">{error}</p>}
+	    {error && <p className="dashboard-message dashboard-message--error">{error}</p>}
 		
-		{loading ? (
-		  <p className="dashboard-loading">Loading your notes…</p>
-		) : notes.length === 0 ? (
-		  <p className="dashboard-empty">
+		{loading && (
+		  <p className="dashboard-message">
+		    Loading your notes…
+		  </p>
+		)}
+		{ ( ! loading) && (notes.length === 0) && (
+		  <p className="dashboard-message">
 		    You haven't written any notes yet.
 		  </p>
-		) : (
+		)}
+		{ ( ! loading) && (notes.length > 0) && (
 		  <section className="notes-grid">
 			{notes.map((note) => (
 			  <article key={note.id} className="note-card">
 			    <header className="note-card-header">
-			      <h3>{note.title || "Untitled note"}</h3>
+			      <h3 className="note-title">
+				    {note.title || "Untitled note"}
+				  </h3>
 			    </header>
-			<p className="note-preview">{note.message}</p>
-			<footer className="note-actions">
-			  <button className="note-action secondary" onClick={() => setEditingNote(note)}>Edit</button>
+				
+				<p className="note-preview">
+				  {note.message}
+				</p>
+				
+				<footer className="note-actions">
+				  <button
+				    className="note-action note-action--secondary"
+					onClick={() => setEditingNote(note)}
+				  >
+				    Edit
+				  </button>
 			  
+				  <button
+					className="note-action note-action--secondary"
+					onClick={() =>
+					  navigator.clipboard.writeText(
+						`${window.location.origin}/note/${note.publicToken}`
+					  )
+					}
+				  >
+					Copy Link
+				  </button>
 			  <button
-			    className="note-action secondary"
-			    onClick={() =>
-				  navigator.clipboard.writeText(
-				    `${window.location.origin}/note/${note.publicToken}`
-				  )
-				}
+			    className="note-action note-action--danger"
+				onClick={() => handleDelete(note.id)}
 			  >
-			    Copy Link
+			    Delete
 			  </button>
-			  <button className="note-action danger" onClick={() => handleDelete(note.id)}>Delete</button>
 			</footer>
 		  </article>
 		  ))}

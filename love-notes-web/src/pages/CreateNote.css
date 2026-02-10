@@ -1,7 +1,13 @@
 /* Filename: src/pages/CreateNote.css */
 
+/* ====================================
+    CreateNote Page Styles.
+======================================= */
 .create-note { max-width: 540px; width: 100%; }
 
+/* ====================================
+    CreateNote Compose State Styles.
+======================================= */
 .create-note-compose {
 	display: flex;
 	flex-direction: column;
@@ -12,18 +18,21 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	gap: 0.35rem;
+	gap: 0.4rem;
 }
 .create-note-title { margin: 0; font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; }
 .create-note-subtitle { font-size: 0.9rem; color: var(--text-muted); line-height: 1.45; }
 .create-note-error {
-	margin-top: 0.25rem;
+	margin-top: 0.2rem;
 	font-size: 0.85rem;
 	color: var(--error);
 	text-align: center;
 	opacity: 0.9;
 }
 
+/* ====================================
+    CreateNote Share State Styles.
+======================================= */
 .share-card {
 	display: flex;
 	flex-direction: column;
@@ -32,17 +41,17 @@
 	padding: clamp(1.75rem, 3vw, 2.25rem);
 	background: var(--surface-dark);
 	border-radius: var(--radius-lg);
-	border: 1px solid var(--border-light);
+	border: 1px solid var(--border-dark);
 	
-	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
 	text-align: center;
 	
 	animation: shareFadeIn 220ms var(--ease-standard) both;
 }
-.share-header { display: flex; flex-direction: column; gap: 0.3rem; }
+.share-header { display: flex; flex-direction: column; gap: 0.35rem; }
 .share-title { margin: 0; font-size: 1.35rem; font-weight: 600; }
 .share-description { font-size: 0.9rem; color: var(--text-muted); }
-.share-link { display: flex; gap: 0.5rem; margin-top: 0.3rem; }
+.share-link { display: flex; gap: 0.5rem; margin-top: 0.4rem; }
 
 .share-link input {
 	flex: 1;
@@ -52,7 +61,7 @@
 	font-family: inherit;
 	color: inherit;
 	
-	background: rgba(255, 255, 255, 0.04);
+	background: rgba(255, 255, 255, 0.035);
 	border: 1px solid var(--border-dark);
 	border-radius: var(--radius-md);
 }
@@ -78,7 +87,7 @@
 	transform: translateY(-1px);
 	box-shadow: 0 6px 16px rgba(75, 123, 253, 0.26);
 }
-.share-muted { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+.share-muted { margin-top: 0.25rem; font-size: 0.8rem; color: var(--text-muted); }
 
 /* ====================================
     CreateNote Animations Styles.

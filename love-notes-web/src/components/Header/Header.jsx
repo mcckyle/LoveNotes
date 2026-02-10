@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Header.jsx
-// Date: 4 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Header component for LoveNotes.
 //****************************************************************************************
@@ -17,13 +17,16 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
+  const isActive = (path) => location.pathname === path;
+  const navItem = (path) => `nav-item ${isActive(path) ? "active" : ""}`;
+  
   async function handleLogout(){
 	  //Call global logout logic.
 	  await logout(); //Redirect AFTER logout state is fully cleared.
 	  navigate("/login", { replace: true }); 
   };
   
-  //Close dropdown menu on outside click listener.
+  //Close the dropdown menu when clicking outside the menu.
   useEffect(() => {
 	  if ( ! menuOpen)
 	  {
@@ -40,9 +43,6 @@ const Header = () => {
 	  document.addEventListener("mousedown", handleClickOutside);
 	  return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
-  
-  const isActive = (path) => location.pathname === path;
-  const navItem = (path) => `nav-item ${isActive(path) ? "active" : ""}`;
   
   return (
 	  <header className="header">
@@ -82,18 +82,18 @@ const Header = () => {
 		  <div className="header-actions">
 		   {user ? (
 		    <div
-			  className="avatar-wrapper"
 			  ref={avatarRef}
+			  className="avatar-wrapper"
 			  role="button"
 			  tabIndex={0}
 			  aria-haspopup="menu"
 			  aria-expanded={menuOpen}
-		      onClick={() => setMenuOpen((prev) => ! prev)}
+		      onClick={() => setMenuOpen((open) => ! open)}
 			  onKeyDown={(e) => {
-				  if (["Enter", " "].includes(e.key))
+				  if ( (e.key === "Enter") || (e.key === " ") )
 				  {
 					  e.preventDefault();
-					  setMenuOpen((prev) => ! prev);
+					  setMenuOpen((open) => ! open);
 				  }
 				  if (e.key === "Escape") setMenuOpen(false);
 			  }}

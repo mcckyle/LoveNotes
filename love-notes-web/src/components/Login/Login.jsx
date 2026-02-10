@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Login.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Login component for LoveNotes.
 //****************************************************************************************
@@ -14,7 +14,7 @@ import "./Login.css"; //Import the custom CSS file.
 const Login = () => {
 	const navigate = useNavigate();
 	const { login } = useContext(AuthContext);
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit } = useForm({ mode: "onSubmit" });
 	const [errorMessage, setErrorMessage] = useState("");
 
     async function onSubmit(data) {
@@ -27,9 +27,9 @@ const Login = () => {
 		}
 		catch
 		{
-			setErrorMessage("That didn't work. Please check your details.");
+			setErrorMessage("Unable to sign in. Please check your details.");
 		}
-	};
+	}
 
     return (
 	  <main className="login">

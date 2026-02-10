@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteForm.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form for creating notes for LoveNotes.
 //****************************************************************************************
@@ -8,24 +8,27 @@
 import { useState } from "react";
 import "./NoteForm.css";
 
-export default function NoteForm({ onSubmit, loading, note, onCancel })
+export default function NoteForm({ onSubmit, loading = false, note, onCancel })
 {
 	const [title, setTitle] = useState(note?.title || "");
 	const [message, setMessage] = useState(note?.message || "");
 	const [recipientName, setRecipientName] = useState(note?.recipientName || "");
 	
+	function handleSubmit(e) {
+		e.preventDefault();
+		if ( loading)
+		{
+			return;
+		}
+		onSubmit({ title, message, recipientName });
+	}
+	
 	return (
-	  <form
-	    className="note-form"
-	    onSubmit={(e) => {
-			e.preventDefault();
-			onSubmit({ title, message, recipientName });
-		}}
-	  >
+	  <form className="note-form" onSubmit={handleSubmit} noValidate>
 	   <header className="note-form-header">
 	     <h2 className="note-form-title">Write with intention</h2>
 		 <p className="note-form-subtitle">
-		   A single message, shared when it feels right.
+		   A single message, written honestly and shared when it feels right.
 		 </p>
 		</header>
 		
@@ -33,6 +36,7 @@ export default function NoteForm({ onSubmit, loading, note, onCancel })
 	      <input
 		    type="text"
 		    placeholder="Title (optional)"
+			aria-label="Note title"
 		    value={title}
 		    onChange={(e) => setTitle(e.target.value)}
 		  />
@@ -41,6 +45,7 @@ export default function NoteForm({ onSubmit, loading, note, onCancel })
 	   <div className="note-field note-field-primary">
 		<textarea
 		  placeholder="Write something meaningful…"
+		  aria-label="Note message"
 		  value={message}
 		  onChange={(e) => setMessage(e.target.value)}
 		  required
@@ -51,6 +56,7 @@ export default function NoteForm({ onSubmit, loading, note, onCancel })
 		<input
 		  type="text"
 		  placeholder="Who is this for? (optional)"
+		  aria-label="Recipient name"
 		  value={recipientName}
 		  onChange={(e) => setRecipientName(e.target.value)}
 		/>

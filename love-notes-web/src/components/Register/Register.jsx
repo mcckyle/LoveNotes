@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Register.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Register component for LoveNotes.
 //****************************************************************************************
@@ -13,7 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./Register.css"; //Import the custom CSS file
 
 const Register = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({ mode: "onSubmit" });
     const navigate = useNavigate();
     const { setAccessToken, setUser } = useContext(AuthContext);
 	const [errorMessage, setErrorMessage] = useState("");
@@ -42,9 +42,9 @@ const Register = () => {
         }
         catch
         {
-            setErrorMessage("Something went wrong. Please try again.");
+            setErrorMessage("Unable to create account. Please try again.");
         }
-    };
+    }
 
     return (
 	 <main className="register">
@@ -66,24 +66,28 @@ const Register = () => {
 			  type="text"
 			  placeholder="Username"
 			  aria-label="Username"
+			  autoComplete="username"
 			  {...register("username", { required: true })}  
 			/>
 			<input
 			  type="email"
 			  placeholder="Email"
 			  aria-label="Email"
+			  autoComplete="email"
 			  {...register("email", { required: true })}      
 			/>
 			<input
 			  type="password"
 			  placeholder="Password"
 			  aria-label="Password"
+			  autoComplete="new-password"
 			  {...register("password", { required: true })}
 			/>
 			<input
 			  type="password"
 			  placeholder="Confirm Password"
 			  aria-label="Confirm password"
+			  autoComplete="new-password"
 			  {...register("confirmPassword", { required: true })}
 			/>
 		  </fieldset>

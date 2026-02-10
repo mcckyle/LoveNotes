@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: CreateNote.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form wrapper for LoveNotes.
 //****************************************************************************************
@@ -27,12 +27,12 @@ export default function CreateNote()
 			setError(null);
 			
 			const response = await createNote(dto, accessToken);
-			setShareUrl(window.location.origin + response.url);
+			setShareUrl(`${window.location.origin}${response.url}`);
 		}
 		catch (error)
 		{
 			console.error(error);
-			setError("We couldn't send your note just yet. Please try again.");
+			setError("Unable to send your note. Please try again.");
 		}
 		finally
 		{
@@ -41,6 +41,11 @@ export default function CreateNote()
 	};
 	
 	const copyLink = async () => {
+		if ( ! shareUrl)
+		{
+			return;
+		}
+		
 		await navigator.clipboard.writeText(shareUrl);
 		setCopied(true);
 		setTimeout(() => setCopied(false), 2000);
@@ -53,7 +58,7 @@ export default function CreateNote()
 		   <header className="create-note-header">
 		    <h1 className="create-note-title">Write a love note</h1>
 			<p className="create-note-subtitle">
-			  A private message, shared when the moment feels right.
+			  A private message, written with care and shared when it feels right.
 			</p>
 		  </header>
 		    <NoteForm onSubmit={handleCreate} loading={loading}/>
@@ -70,7 +75,7 @@ export default function CreateNote()
 			
 			<div className="share-link">
 		      <input readOnly value={shareUrl} aria-label="Shareable link" />
-			  <button onClick={copyLink} className="share-button">
+			  <button type="button" onClick={copyLink} className="share-button">
 			    {copied ? "Copied" : "Copy"}
 			  </button>
 			</div>

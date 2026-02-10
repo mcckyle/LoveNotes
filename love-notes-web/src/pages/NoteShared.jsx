@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteShared.jsx
-// Date: 5 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note success page for LoveNotes.
 //****************************************************************************************
@@ -28,7 +28,7 @@ export default function NoteShared()
 			}
 			catch
 			{
-				setError("We couldn't open this note right now.");
+				setError("This note isn't available right now.");
 			}
 			finally
 			{
@@ -40,15 +40,15 @@ export default function NoteShared()
 	
 	return (
 	  <main className="page page-centered note-shared">
-	   <section className="note-wrapper">
-	    <div className="note-icon" aria-hidden="true">💌</div>
-		<p className="note-intro">
+	   <section className="note-shared-wrapper">
+	    <div className="note-shared-icon" aria-hidden="true">💌</div>
+		<p className="note-shared-intro">
 		  This note was shared with love.
 		</p>
 		
 		{loading && (
-		  <div className="note-card note-loading-card">
-			<p className="note-loading">
+		  <div className="note-card note-card--loading">
+			<p className="note-loading-text">
 			  Opening your message…
 			</p>
 		  </div>
@@ -56,8 +56,8 @@ export default function NoteShared()
 		
 		{error && <p className="note-error">{error}</p>}
 		
-		{note && (
-		  <article className="note-card note-content">
+		{ (note) && ( ! loading) && (
+		  <article className="note-card note-card--content">
 		    {note.title && <h2 className="note-title">{note.title}</h2>}
 			<p className="note-message">{note.message}</p>
 			{note.recipientName && (

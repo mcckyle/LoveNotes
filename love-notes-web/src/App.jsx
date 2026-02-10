@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: App.jsx
-// Date: 4 February 2026
+// Date: 7 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the React entry point for LoveNotes.
 //****************************************************************************************
@@ -27,7 +27,7 @@ const App = () => {
 		    <div className="app-shell">
 			  <Header />
 			  <main className="app-main">
-			    <div className="app-content fade-in">
+			    <div className="app-content">
 				 <Routes>
 				  {/* Public Routes. */}
 				  <Route path="/" element={<HomePage />} />

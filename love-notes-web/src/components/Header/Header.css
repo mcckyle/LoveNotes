@@ -9,34 +9,30 @@
   z-index: 1000;
   
   backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--bg-dark) 92%, transparent);
+  background: color-mix(in srgb, var(--bg-dark) 90%, transparent);
   border-bottom: 1px solid var(--border-dark);
-  
-  transition: background 220ms var(--ease-standard);
 }
 
 /* ====================================
     Header Inner Layout Styles.
 ======================================= */
 .header-inner {
-	min-height: 68px;
+	min-height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-lg);
-	padding: 0.85rem var(--space-lg);
+	padding: 0.75rem var(--space-lg);
 }
 
 /* ====================================
     Logo Text Styles.
 ======================================= */
 .logo {
-	font-size: 1.1rem;
+	font-size: 1.05rem;
 	font-weight: 600;
 	letter-spacing: -0.02em;
 	color: var(--text-light);
-	
-	transition: color var(--transition-base);
 }
 .logo:hover { color: var(--primary); }
 
@@ -46,10 +42,9 @@
 .nav { display: flex; gap: var(--space-xl); }
 .nav-item {
   position: relative;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
-  padding-bottom: 2px;
 }
 .nav-item:hover { color: var(--text-light); }
 .nav-item.active { color: var(--text-light); }
@@ -60,12 +55,12 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: -2px;
+	bottom: -6px;
 	height: 2px;
-	background: var(--primary);
 	border-radius: 2px;
+	background: var(--primary);
 	opacity: 0;
-	transform: scaleX(0.75);
+	transform: scaleX(0.7);
 	
 	transition: opacity var(--transition-base), transform var(--transition-base);
 }
@@ -88,13 +83,10 @@
 	font-size: 0.85rem;
 	padding: 0.45rem 0.9rem;
 	border-radius: var(--radius-md);
-	border: 1px solid transparent;
 	color: var(--text-muted);
-	
-	transition: all var(--transition-base);
 }
 .auth-link:hover { color: var(--text-light); }
-.auth-link.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.auth-link.primary { background: var(--primary); color: #fff; }
 .auth-link.primary:hover { background: color-mix(in srgb, var(--primary) 88%, #000); }
 
 /* ====================================
@@ -108,17 +100,15 @@
 
 /* Avatar Circle Styles. */
 .avatar {
-	width: 36px;
-	height: 36px;
+	width: 34px;
+	height: 34px;
 	display: grid;
 	place-items: center;
 	border-radius: 50%;
 	font-weight: 600;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	background: var(--primary);
 	color: #fff;
-	
-	transition: background var(--transition-base);
 }
 .avatar-wrapper:hover .avatar { background: var(--accent); }
 .avatar-wrapper:focus-visible .avatar { outline: 2px solid var(--primary); outline-offset: 3px; }
@@ -130,7 +120,7 @@
 	position: absolute;
 	top: calc(100% + 10px);
 	right: 0;
-	min-width: 200px;
+	min-width: 190px;
 	
 	background: var(--surface-dark);
 	border: 1px solid var(--border-dark);
@@ -140,7 +130,6 @@
 	
 	opacity: 0;
 	transform: translateY(-6px);
-	transform-origin: top right;
 	pointer-events: none;
 	
 	transition: opacity var(--transition-base), transform var(--transition-base);
@@ -151,12 +140,9 @@
 .menu-item {
 	width: 100%;
 	padding: 0.6rem 0.75rem;
-	line-height: 1.4;
+	font-size: 0.85rem;
 	border-radius: var(--radius-md);
-	font-size: 0.875rem;
 	background: transparent;
-	
-	transition: background var(--transition-base);
 }
 .menu-item:hover { background: color-mix(in srgb, var(--primary) 8%, transparent); }
 .menu-item.danger { color: var(--error); font-weight: 500; }
@@ -174,7 +160,6 @@
   }
   .menu { background: var(--surface-light); border-color: var(--border-light); }
   .nav-item, .auth-link { color: var(--text-dark); }
-  .nav-item.active::after { background: var(--primary); }
 }
 
 /* ====================================

@@ -1,16 +1,24 @@
 /* Filename: src/pages/NotesDashboard.css */
 
 .notes-dashboard { max-width: 720px; width: 100%; }
+
+/* ====================================
+    NotesDashboard Header Styles.
+======================================= */
 .dashboard-header { text-align: center; margin-bottom: 2.75rem; }
 .dashboard-header h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.35rem; }
-.page-subtitle { font-size: 0.95rem; color: var(--text-muted); opacity: 0.85; }
-.dashboard-loading, .dashboard-empty, .dashboard-error {
+.dashboard-subtitle { font-size: 0.95rem; color: var(--text-muted); opacity: 0.85; }
+.dashboard-message {
 	text-align: center;
 	font-size: 0.95rem;
 	color: var(--text-muted);
 	margin-top: 2rem;
 }
-.dashboard-error { color: var(--error); }
+.dashboard-message--error { color: var(--error); }
+
+/* ====================================
+    NotesDashboard Grid Styles.
+======================================= */
 .notes-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -18,7 +26,7 @@
 }
 
 /* ====================================
-    Individual Note Card Styles.
+    NotesDashboard Note Card Styles.
 ======================================= */
 .note-card {
 	padding: 1.75rem;
@@ -33,7 +41,7 @@
 	transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 .note-card:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16); }
-.note-card-header h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.note-title { margin: 0; font-size: 1.1rem; font-weight: 600; }
 
 .note-preview {
 	font-size: 0.95rem;
@@ -68,10 +76,10 @@
 	
 	transition: background 0.15s ease, transform 0.15s ease;
 }
-.note-action.secondary { background: rgba(255, 255, 255, 0.08); color: inherit; }
-.note-action.secondary:hover { background: rgba(255, 255, 255, 0.14); transform: translateY(-1px); }
-.note-action.danger { color: var(--error); }
-.note-action.danger:hover { background: rgba(255, 0, 0, 0.08); }
+.note-action--secondary { background: rgba(255, 255, 255, 0.08); color: inherit; }
+.note-action--secondary:hover { background: rgba(255, 255, 255, 0.14); transform: translateY(-1px); }
+.note-action--danger { color: var(--error); }
+.note-action--danger:hover { background: rgba(255, 0, 0, 0.08); }
 
 /* ====================================
     NotesDashboard Modal Styles.

@@ -125,6 +125,7 @@ p {
 	box-shadow: var(--shadow-sm);
 	padding: var(--space-xl);
 }
+.surface-muted { background: color-mix(in srgb, var(--surface-dark) 85%, transparent); }
 
 /* ====================================
     Page Layout System Styles.
@@ -208,7 +209,7 @@ input, textarea {
 input:focus, textarea:focus {
 	border-color: var(--primary);
 	outline: none;
-	box-shadow: 0 0 0 3px rgba(75, 123, 253, 0.2);
+	box-shadow: 0 0 0 3px var(--primary-muted);
 }
 input::placeholder, textarea::placeholder { color: var(--text-muted); }
 
@@ -247,5 +248,5 @@ button, input, textarea { font-family: inherit; }
     Reduced Motion Styles.
 ======================================= */
 @media(prefers-reduced-motion: reduce) {
-	* { animation: none !important; transition: none important!; }
+	* { animation: none !important; transition: none !important; }
 }

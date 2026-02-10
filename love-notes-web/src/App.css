@@ -7,10 +7,6 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	
-	background: var(--bg-dark);
-	color: var(--text-light);
-	font-family: var(--font-sans);
 }
 
 /* ====================================
@@ -19,19 +15,17 @@
 .app-main {
 	flex: 1;
 	width: 100%;
-	padding: clamp(var(--space-lg), 5vw, var(--space-xl)) var(--space-lg);
 	display: flex;
 	justify-content: center;
+	padding: clamp(var(--space-lg), 5vw, var(--space-xl)) var(--space-lg);
 }
+
 .app-content {
 	width: 100%;
 	max-width: 900px;
-	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-2xl);
-	
-	animation: fadeIn 300ms var(--ease-standard) both;
 }
 
 /* ====================================
@@ -42,6 +36,6 @@
 	text-align: center;
 	font-size: var(--text-2xl);
 	font-weight: 600;
-	opacity: 0.5;
+	opacity: 0.55;
 	letter-spacing: -0.02em;
 }
