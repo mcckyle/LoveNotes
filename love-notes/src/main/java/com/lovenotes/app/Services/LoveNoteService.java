@@ -2,7 +2,7 @@
 //
 //     Filename: LoveNoteService.java
 //     Author: Kyle McColgan
-//     Date: 2 February 2026
+//     Date: 12 February 2026
 //     Description: This file provides LoveNote business logic.
 //
 //***************************************************************************************
@@ -14,6 +14,7 @@ import com.lovenotes.app.Data.UserRepository;
 import com.lovenotes.app.Models.LoveNote;
 import com.lovenotes.app.Models.User;
 import com.lovenotes.app.payload.CreateLoveNoteDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -21,16 +22,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 public class LoveNoteService
 {
     private final LoveNoteRepository repository;
     private final UserRepository userRepository;
-
-    public LoveNoteService(LoveNoteRepository repository, UserRepository userRepository) {
-        this.repository = repository;
-        this.userRepository = userRepository;
-    }
+    private final MailService mailService;
 
     public LoveNote createNote(Integer userId, CreateLoveNoteDTO dto)
     {
@@ -47,6 +45,20 @@ public class LoveNoteService
         note.setExpiresAt(Instant.now().plus(30, ChronoUnit.DAYS));
 
         return repository.save(note);
+    }
+
+    private LoveNote createNoteAndNotify(LoveNote note, String recipientEmail)
+    {
+        //Save the note to the database (JPA).
+        LoveNote savedNote = repository.save(note);
+
+        if ( (recipientEmail != null) && (!recipientEmail.isBlank()) )
+        {
+            String shareUrl = "https://your-domain.com/note/" + savedNote.getPublicToken();
+            mailService.sendNoteShareEmail(recipientEmail, savedNote.getTitle(), shareUrl);
+        }
+
+        return savedNote;
     }
 
     public LoveNote getByPublicToken(String token)
