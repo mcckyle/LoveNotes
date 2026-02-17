@@ -2,12 +2,14 @@
 //
 //     Filename: CreateLoveNoteDTO.java
 //     Author: Kyle McColgan
-//     Date: 31 January 2026
+//     Date: 17 February 2026
 //     Description: This file provides LoveNote data transfer formatting.
 //
 //***************************************************************************************
 
 package com.lovenotes.app.payload;
+
+import jakarta.validation.constraints.Email;
 
 public class CreateLoveNoteDTO
 {
@@ -15,13 +17,17 @@ public class CreateLoveNoteDTO
     private String message;
     private String recipientName;
 
+    @Email
+    private String recipientEmail;
+
     public CreateLoveNoteDTO() {}
 
-    public CreateLoveNoteDTO(String title, String message, String recipientName)
+    public CreateLoveNoteDTO(String title, String message, String recipientName, String recipientEmail)
     {
         this.title = title;
         this.message = message;
         this.recipientName = recipientName;
+        this.recipientEmail = recipientEmail;
     }
 
     public String getTitle() {
@@ -47,4 +53,8 @@ public class CreateLoveNoteDTO
     public void setRecipientName(String recipientName) {
         this.recipientName = recipientName;
     }
+
+    public String getRecipientEmail() { return recipientEmail; }
+
+    public void setRecipientEmail(String recipientEmail) { this.recipientEmail = recipientEmail; }
 }

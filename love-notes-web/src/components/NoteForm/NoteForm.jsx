@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteForm.jsx
-// Date: 7 February 2026
+// Date: 16 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form for creating notes for LoveNotes.
 //****************************************************************************************
@@ -13,6 +13,7 @@ export default function NoteForm({ onSubmit, loading = false, note, onCancel })
 	const [title, setTitle] = useState(note?.title || "");
 	const [message, setMessage] = useState(note?.message || "");
 	const [recipientName, setRecipientName] = useState(note?.recipientName || "");
+	const [recipientEmail, setRecipientEmail] = useState(note?.recipientEmail || "");
 	
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -61,6 +62,16 @@ export default function NoteForm({ onSubmit, loading = false, note, onCancel })
 		  onChange={(e) => setRecipientName(e.target.value)}
 		/>
 	   </div>
+	   
+	   	<div className="note-field">
+			<input
+			  type="email"
+			  placeholder="Recipient email (optional)"
+			  aria-label="Recipient email"
+			  value={recipientEmail}
+			  onChange={(e) => setRecipientEmail(e.target.value)}
+			/>
+	    </div>
 	   
 	   <div className="note-actions">
 			<button type="submit" className="note-button primary" disabled={loading}>

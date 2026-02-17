@@ -2,7 +2,7 @@
 //
 //   Filename: LoveNoteController.java
 //   Author: Kyle McColgan
-//   Date: 2 February 2026
+//   Date: 17 February 2026
 //   Description: This file provides LoveNote CRUD endpoints.
 //
 //***************************************************************************************
@@ -15,6 +15,7 @@ import com.lovenotes.app.Services.LoveNoteService;
 import com.lovenotes.app.Services.UserService;
 import com.lovenotes.app.payload.CreateLoveNoteDTO;
 import com.lovenotes.app.security.UserDetailsImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class LoveNoteController
     @PostMapping
     public ResponseEntity<?> createNote(
             @AuthenticationPrincipal UserDetailsImpl principal,
-            @RequestBody CreateLoveNoteDTO dto
+            @Valid @RequestBody CreateLoveNoteDTO dto
     )
     {
         User user = resolveUser(principal);

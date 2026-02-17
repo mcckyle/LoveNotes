@@ -2,7 +2,7 @@
 //
 //     Filename: LoveNoteService.java
 //     Author: Kyle McColgan
-//     Date: 12 February 2026
+//     Date: 16 February 2026
 //     Description: This file provides LoveNote business logic.
 //
 //***************************************************************************************
@@ -14,6 +14,7 @@ import com.lovenotes.app.Data.UserRepository;
 import com.lovenotes.app.Models.LoveNote;
 import com.lovenotes.app.Models.User;
 import com.lovenotes.app.payload.CreateLoveNoteDTO;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +45,22 @@ public class LoveNoteService
         note.setCreatedAt(Instant.now());
         note.setExpiresAt(Instant.now().plus(30, ChronoUnit.DAYS));
 
-        return repository.save(note);
+        LoveNote saved = repository.save(note);
+
+        if ( (dto.getRecipientEmail() != null) && (!dto.getRecipientEmail().isBlank()) )
+        {
+            String shareUrl = "http://localhost:3000/note/" + saved.getPublicToken();
+            try
+            {
+                mailService.sendHtmlNoteEmail(dto.getRecipientEmail(), saved.getTitle(), shareUrl);
+            }
+            catch (MessagingException e)
+            {
+                System.out.println("Messaging exception while sending the note!: " + e.getMessage());
+            }
+        }
+
+        return saved;
     }
 
     private LoveNote createNoteAndNotify(LoveNote note, String recipientEmail)

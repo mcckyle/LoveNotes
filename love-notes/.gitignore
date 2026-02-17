@@ -1,5 +1,5 @@
 .log
-application.properties
+*.properties
 HELP.md
 .gradle
 build/
