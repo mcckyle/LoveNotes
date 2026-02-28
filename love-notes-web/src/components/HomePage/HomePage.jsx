@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: HomePage.jsx
-// Date: 7 February 2026
+// Date: 21 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the HomePage component for LoveNotes.
 //****************************************************************************************
@@ -10,7 +10,7 @@ import "./HomePage.css";
 
 const HomePage = () => {
 	return (
-	  <div className="home">
+	  <div className="home page-centered fade-in">
 	    {/* Hero Section. */}
 	    <section className="home-hero">
 		  <span className="home-eyebrow">Designed for love</span>
@@ -27,7 +27,7 @@ const HomePage = () => {
 		    </p>
 			
 			<div className="home-actions">
-		      <Link to="/note" className="home-cta">
+		      <Link to="/note" className="button">
 			    Create a note
 			  </Link>
 		    </div>

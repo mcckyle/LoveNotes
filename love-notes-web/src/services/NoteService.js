@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteService.js
-// Date: 4 February 2026
+// Date: 21 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the frontend NoteService for LoveNotes.
 //****************************************************************************************
@@ -18,7 +18,7 @@ import request from "../api/apiClient";
  *
  * @returns {Promise<{ url: string }>}
  */
-export async function createNote({ title, message, recipientName }, token)
+export async function createNote({ title, message, recipientName, recipientEmail }, token)
 {
 	if ( ( ! message) || ( ! message.trim()) )
 	{
@@ -32,6 +32,7 @@ export async function createNote({ title, message, recipientName }, token)
 			title: title?.trim() || null,
 			message: message.trim(),
 			recipientName: recipientName?.trim() || null,
+			recipientEmail: recipientEmail?.trim() || null,
 		},
 	});
 }

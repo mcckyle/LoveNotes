@@ -2,7 +2,7 @@
 //
 //     Filename: LoveNoteService.java
 //     Author: Kyle McColgan
-//     Date: 16 February 2026
+//     Date: 21 February 2026
 //     Description: This file provides LoveNote business logic.
 //
 //***************************************************************************************
@@ -47,9 +47,10 @@ public class LoveNoteService
 
         LoveNote saved = repository.save(note);
 
+        System.out.println("DTO recipientEmail: " + dto.getRecipientEmail());
         if ( (dto.getRecipientEmail() != null) && (!dto.getRecipientEmail().isBlank()) )
         {
-            String shareUrl = "http://localhost:3000/note/" + saved.getPublicToken();
+            String shareUrl = "http://localhost:5173/note/" + saved.getPublicToken();
             try
             {
                 mailService.sendHtmlNoteEmail(dto.getRecipientEmail(), saved.getTitle(), shareUrl);

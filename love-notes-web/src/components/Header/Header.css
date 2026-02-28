@@ -8,8 +8,8 @@
   top: 0;
   z-index: 1000;
   
-  backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--bg-dark) 90%, transparent);
+  backdrop-filter: blur(14px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)), color-mix(in srgb, var(--bg-dark) 92%, transparent);
   border-bottom: 1px solid var(--border-dark);
 }
 
@@ -17,19 +17,24 @@
     Header Inner Layout Styles.
 ======================================= */
 .header-inner {
+	width: 100%;
+	max-width: 960px;
+	margin-inline: auto;
+	
 	min-height: 64px;
+	padding: 0 var(--space-lg);
+	
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: var(--space-lg);
-	padding: 0.75rem var(--space-lg);
+	gap: var(--space-xl);
 }
 
 /* ====================================
-    Logo Text Styles.
+    Header Logo Text Styles.
 ======================================= */
 .logo {
-	font-size: 1.05rem;
+	font-size: 1rem;
 	font-weight: 600;
 	letter-spacing: -0.02em;
 	color: var(--text-light);
@@ -37,14 +42,15 @@
 .logo:hover { color: var(--primary); }
 
 /* ====================================
-    Navigation Styles.
+    Header Navigation Styles.
 ======================================= */
-.nav { display: flex; gap: var(--space-xl); }
+.nav { display: flex; align-items: center; gap: var(--space-xl); }
 .nav-item {
-  position: relative;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
+  padding-block: 0.25rem;
+  position: relative;
 }
 .nav-item:hover { color: var(--text-light); }
 .nav-item.active { color: var(--text-light); }
@@ -55,19 +61,19 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: -6px;
-	height: 2px;
+	bottom: -10px;
+	height: 1.5px;
 	border-radius: 2px;
 	background: var(--primary);
 	opacity: 0;
-	transform: scaleX(0.7);
+	transform: scaleX(0.6);
 	
 	transition: opacity var(--transition-base), transform var(--transition-base);
 }
 .nav-item.active::after { opacity: 1; transform: scaleX(1); }
 
 /* ====================================
-    Right Side Actions Styles.
+    Header Right Side Actions Styles.
 ======================================= */
 .header-actions {
 	display: flex;
@@ -76,9 +82,9 @@
 }
 
 /* ====================================
-    Auth Links Styles.
+    Header Auth Links Styles.
 ======================================= */
-.auth-links { display: flex; gap: 0.5rem; }
+.auth-links { display: flex; gap: 0.4rem; }
 .auth-link {
 	font-size: 0.85rem;
 	padding: 0.45rem 0.9rem;
@@ -87,10 +93,10 @@
 }
 .auth-link:hover { color: var(--text-light); }
 .auth-link.primary { background: var(--primary); color: #fff; }
-.auth-link.primary:hover { background: color-mix(in srgb, var(--primary) 88%, #000); }
+.auth-link.primary:hover { box-shadow: 0 10px 26px rgba(139, 92, 246, 0.28); }
 
 /* ====================================
-    Avatar Wrapper Styles.
+    Header Avatar Wrapper Styles.
 ======================================= */
 .avatar-wrapper {
 	position: relative;
@@ -109,24 +115,25 @@
 	font-size: 0.85rem;
 	background: var(--primary);
 	color: #fff;
+	
+	transition: transform var(--transition-fast), background-color var(--transition-fast);
 }
-.avatar-wrapper:hover .avatar { background: var(--accent); }
-.avatar-wrapper:focus-visible .avatar { outline: 2px solid var(--primary); outline-offset: 3px; }
+.avatar-wrapper:hover .avatar { transform: translateY(-1px); }
 
 /* ====================================
-    Avatar Dropdown Menu Styles.
+    Header Avatar Dropdown Menu Styles.
 ======================================= */
 .menu {
 	position: absolute;
-	top: calc(100% + 10px);
+	top: calc(100% + 12px);
 	right: 0;
-	min-width: 190px;
+	min-width: 200px;
 	
-	background: var(--surface-dark);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)), var(--surface-dark);
 	border: 1px solid var(--border-dark);
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-md);
-	padding: 4px;
+	padding: 6px;
 	
 	opacity: 0;
 	transform: translateY(-6px);
@@ -136,27 +143,28 @@
 }
 .menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-/* Menu Items Styles. */
+/* Header Menu Items Styles. */
 .menu-item {
 	width: 100%;
-	padding: 0.6rem 0.75rem;
+	padding: 0.6rem 0.8rem;
 	font-size: 0.85rem;
-	border-radius: var(--radius-md);
+	border-radius: var(--radius-sm);
 	background: transparent;
+	text-align: left;
 }
-.menu-item:hover { background: color-mix(in srgb, var(--primary) 8%, transparent); }
+.menu-item:hover { background: color-mix(in srgb, var(--primary) 10%, transparent); }
 .menu-item.danger { color: var(--error); font-weight: 500; }
 
-/* Menu Divider Styles. */
-.menu-divider { height: 1px; margin: 8px 0; background: var(--border-dark); }
+/* Header Menu Divider Styles. */
+.menu-divider { height: 1px; margin: 6px 0; background: var(--border-dark); }
 
 /* ====================================
     Header Light Mode Styles.
 ======================================= */
 @media (prefers-color-scheme: light) {
   .header {
-	  background: color-mix(in srgb, var(--bg-light) 88%, transparent);
-	  border-bottom-color: var(--border-light);
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01)), color-mix(in srgb, var(--bg-light) 94%, transparent);
+	border-bottom-color: var(--border-light);
   }
   .menu { background: var(--surface-light); border-color: var(--border-light); }
   .nav-item, .auth-link { color: var(--text-dark); }

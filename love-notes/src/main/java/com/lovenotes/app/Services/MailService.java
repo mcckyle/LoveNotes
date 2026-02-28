@@ -34,6 +34,8 @@ public class MailService
         message.setTo(to);
         message.setSubject("A Love Note for You");
 
+        System.out.println("About to send email to: " + to);
+
         String body = """
                 Hello,
                 
@@ -49,6 +51,7 @@ public class MailService
         );
 
         mailSender.send(message);
+        System.out.println("Sent email to: " + to);
     }
 
     public void sendHtmlNoteEmail(String to, String noteTitle, String noteUrl) throws MessagingException

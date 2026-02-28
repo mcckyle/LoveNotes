@@ -1,30 +1,27 @@
 /* Filename: src/components/Register/Register.css */
 
 /* ====================================
-    Register Container Styles.
+    Register Layout Styles.
 ======================================= */
 .register {
-	max-width: 420px;
-	width: 92%;
+	max-width: 440px;
 	margin-inline: auto;
-	margin-block: clamp(4rem, 8vw, 6rem);
-	padding: clamp(2rem, 4vw, 2.4rem);
-	
-	background: var(--surface-dark);
-	border-radius: 22px;
-	border: 1px solid var(--border-dark);
-	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-	
-	animation: registerFadeIn 220ms var(--ease-standard) both;
 }
 
 /* ====================================
-    Register Form Layout Styles.
+    Register Surface Styles.
 ======================================= */
 .register-form {
 	display: flex;
 	flex-direction: column;
-	gap: 1.6rem;
+	gap: var(--space-xl);
+	
+	padding: clamp(2rem, 4vw, 2.4rem);
+	border-radius: var(--radius-lg);
+	
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)), var(--surface-dark);
+	border: 1px solid var(--border-dark);
+	box-shadow: var(--shadow-sm);
 }
 
 /* ====================================
@@ -36,34 +33,16 @@
 	text-align: center;
 	gap: 0.4rem;
 }
-.register-header h1 { margin: 0; font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em; }
-.register-subtitle { font-size: 0.9rem; color: var(--text-muted); line-height: 1.45; }
+.register-header h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+.register-subtitle { font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); }
 
 /* ====================================
     Register Form Fields Styles.
 ======================================= */
-.register-fields { display: flex; flex-direction: column; gap: 0.9rem; }
-
-.register-fields input {
-	width: 100%;
-	padding: 0.82rem 0.95rem;
-	
-	font-family: inherit;
-	font-size: 0.9rem;
-	color: inherit;
-	
-	background: rgba(255, 255, 255, 0.035);
-	border: 1px solid var(--border-dark);
-	border-radius: var(--radius-sm);
-	
-	transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
-}
-.register-fields input::placeholder { opacity: 0.55; }
-.register-fields input:focus {
-	outline: none;
-	border-color: var(--primary);
-	background: rgba(75, 123, 253, 0.06);
-	box-shadow: 0 0 0 2px rgba(75, 123, 253, 0.18);
+.register-fields {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
 }
 
 /* ====================================
@@ -79,50 +58,18 @@
 /* ====================================
     Register Submit Button Styles.
 ======================================= */
-.register-button {
-	margin-top: 0.5rem;
-	padding: 0.85rem 1.6rem;
-	
-	border-radius: var(--radius-md);
-	border: none;
-	
-	font-family: inherit;
-	font-size: 0.9rem;
-	font-weight: 600;
-	
-	background: var(--primary);
-	color: #fff;
-	cursor: pointer;
-	box-shadow: 0 4px 12px rgba(75, 123, 253, 0.22);
-	
-	transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
-}
-.register-button:hover {
-	background: var(--accent);
-	transform: translateY(-1px);
-	box-shadow: 0 6px 16px rgba(75, 123, 253, 0.28);
-}
-.register-button:active { transform: translateY(0); }
-.register-button:focus-visible {
-	outline: none;
-	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05),
-	            0 0 0 4px rgba(75, 123, 253, 0.35);
+.register-submit {
+	width: 100%;
+	justify-content: center;
+	margin-top: var(--space-sm);
 }
 
 /* ====================================
     Register Light Mode Styles.
 ======================================= */
 @media (prefers-color-scheme: light) {
-	.register { background: var(--surface-light); border-color: var(--border-light); }
-    .register-fields input { background: var(--bg-light); }
-}
-
-/* ====================================
-    Register Animations Styles.
-======================================= */
-@keyframes registerFadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+	.register-form { background: var(--surface-light); border-color: var(--border-light); }
+    .register-subtitle { color: var(--text-muted-light); }
 }
 
 /* ====================================

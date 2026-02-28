@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Register.jsx
-// Date: 7 February 2026
+// Date: 22 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Register component for LoveNotes.
 //****************************************************************************************
@@ -47,7 +47,7 @@ const Register = () => {
     }
 
     return (
-	 <main className="register">
+	 <main className="register page fade-in">
         <form
 		  className="register-form"
 		  onSubmit={handleSubmit(onSubmit)}
@@ -98,7 +98,7 @@ const Register = () => {
 			</p>
 		  )}
 		  
-		  <button type="submit" className="register-button">
+		  <button type="submit" className="button register-submit">
 			Create account
 		  </button>
          </form>

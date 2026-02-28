@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: Header.jsx
-// Date: 7 February 2026
+// Date: 21 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the Header component for LoveNotes.
 //****************************************************************************************
@@ -46,7 +46,7 @@ const Header = () => {
   
   return (
 	  <header className="header">
-		<div className="header-inner container">
+		<div className="header-inner">
 		
 		  {/* Left Logo. */}
 		  <Link to="/" className="logo">

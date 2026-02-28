@@ -1,6 +1,6 @@
 //****************************************************************************************
 // Filename: NoteForm.jsx
-// Date: 16 February 2026
+// Date: 21 February 2026
 // Author: Kyle McColgan
 // Description: This file contains the note form for creating notes for LoveNotes.
 //****************************************************************************************
@@ -21,7 +21,7 @@ export default function NoteForm({ onSubmit, loading = false, note, onCancel })
 		{
 			return;
 		}
-		onSubmit({ title, message, recipientName });
+		onSubmit({ title, message, recipientName, recipientEmail });
 	}
 	
 	return (
